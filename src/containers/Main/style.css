@@ -1,0 +1,37 @@
+.bookShelf {
+    background-color: #000;
+    
+    position: fixed;
+
+    height: 100%;
+    padding: 30px 0 0 !important;
+}
+
+.bookContainer {
+    padding: 20px 30px 20px 60px !important;
+}
+
+.bookList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bookList__item {
+    justify-content: flex-start;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 200px;
+}
+
+.addBook {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+
+    background-color: #ff3b3f;
+}
+
+.addBook:hover,
+.addBook:focus {
+    background-color: #ff3b3f;
+}

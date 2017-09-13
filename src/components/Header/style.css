@@ -1,0 +1,13 @@
+.header {
+    background-color: #ff3b3f;
+}
+
+.header__title {
+    background-color: #e53538;
+    min-height: 60px !important;
+
+    color: #fff;
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+}

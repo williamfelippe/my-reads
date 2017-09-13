@@ -1,0 +1,23 @@
+.shelfSidebar__item {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.shelfSidebar__item__link {
+    cursor: pointer;
+    color: #fff;
+
+    font: 'Raleway', sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+
+    display: block;
+
+    padding: 15px 40px !important;
+}
+
+.shelfSidebar__item__link:hover,
+.shelfSidebar__item__link--active {
+    background-color: #191919;
+    color: #ff3b3f;
+}

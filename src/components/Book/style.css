@@ -1,0 +1,39 @@
+.book {
+    text-align: center;
+
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.book__button {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+
+    background-color: #ff3b3f;
+    display: none;
+}
+
+.book:hover .book__button {
+    display: block;
+}
+
+.book__button:hover,
+.book__button:focus {
+    background-color: #ff3b3f;
+}
+
+.book__title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    color: #fff;
+
+    margin: 5px 0 2px;
+}
+
+.book__subtitle {
+    font-size: 12px;
+    color: #fff;
+    
+    margin: 0;
+}

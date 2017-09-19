@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Row, Col, Button } from 'react-materialize'
 import { getAll, update } from '../../api/BooksAPI'
-import { Book, ShelfSidebar } from '../../components'
-import { READ, WANT_TO_READ, CURRENTLY_READING } from '../../constants/shelfs'
+import { BooksList, ShelfSidebar, PageHandler } from '../../components'
+import { READ } from '../../constants/shelfs'
+import shelfToTitle from '../../utils/shelfToTitle'
 import './style.css'
 
 class Main extends Component {
@@ -11,7 +13,10 @@ class Main extends Component {
         super()
         this.state = {
             books: [],
-            shelf: READ
+            shelf: READ,
+            loading: false,
+            error: false,
+            errorMessage: ''
         }
     }
 
@@ -26,19 +31,26 @@ class Main extends Component {
      */
     fetchBooks() {
 
-        /**
-         * 
-         */
-        getAll()
-            .then(books => {
-                /**
-                 * 
-                 */
-                this.setState({ books })
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.setState({ loading: true }, () => {
+
+            /**
+             * 
+             */
+            getAll()
+                .then(books => {
+
+                    /**
+                     * 
+                     */
+                    this.setState({
+                        books,
+                        loading: false
+                    })
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        })
     }
 
 
@@ -50,25 +62,36 @@ class Main extends Component {
      * @param {string} shelf 
      * @memberof Main
      */
-    changeBookOfShelf(bookId, shelf) {
-
-        /**
-         * 
-         */
-        const { books } = this.state
-        const currentBook = books.filter(book => bookId === book.id)
+    changeBookOfShelf(currentBook, shelf) {
 
         /**
          * 
          */
         update(currentBook, shelf)
             .then(response => {
-                console.log(response)
+
+                /**
+                 * 
+                 */
+                currentBook.shelf = shelf
+
+                /**
+                 * 
+                 */
+                this.setState((prevState, props) => ({
+                    books: [
+                        ...prevState.books.filter(
+                            book => book.id !== currentBook.id
+                        ),
+                        currentBook
+                    ]
+                }))
             })
             .catch(error => {
                 console.log(error)
             })
     }
+
 
     /**
      * 
@@ -77,60 +100,50 @@ class Main extends Component {
      * @memberof Main
      */
     changeShelf(shelf) {
-        this.setState({ shelf }, () => {
-            console.log('SHELF', this.state.shelf)
-        })
-    }
-
-    shelfToTitle() {
-        const { shelf } = this.state
-
-        switch (shelf) {
-            case READ:
-                return 'Lido'
-
-            case WANT_TO_READ:
-                return 'Quero ler'
-
-            case CURRENTLY_READING:
-                return 'Lendo'
-
-            default:
-                return ''
-        }
+        this.setState({ shelf })
     }
 
     render() {
-
-        const { books, shelf } = this.state
-
-        const booksList = books.filter(book => book.shelf === shelf).map(book => {
-            return (
-                <li key={book.id} className="bookList__item">
-                    <Book book={book} />
-                </li>
-            )
-        })
+        const {
+            books,
+            shelf,
+            loading,
+            error
+        } = this.state
 
         return (
-            <Row>
-                <Col s={3} className="bookShelf">
-                    <ShelfSidebar
-                        currentShelf={shelf}
-                        changeShelf={this.changeShelf.bind(this)} />
-                </Col>
-                <Col s={9} className="offset-s3 bookContainer">
-                    <h1>
-                        {this.shelfToTitle()}
-                    </h1>
+            <PageHandler
+                loading={loading}
+                error={error}>
+                <Row>
+                    <Col s={3} className="bookShelf">
+                        <ShelfSidebar
+                            currentShelf={shelf}
+                            changeShelf={this.changeShelf.bind(this)} />
+                    </Col>
+                    <Col s={9} className="offset-s3 bookContainer">
+                        <h1>
+                            {shelfToTitle(shelf)}
+                        </h1>
 
-                    <ul className="bookList">
-                        {booksList}
-                    </ul>
+                        <BooksList
+                            changeBookOfShelf={this.changeBookOfShelf.bind(this)}
+                            books={books.filter(
+                                book => book.shelf === shelf
+                            )} />
 
-                    <Button floating large className='addBook' waves='light' icon='search' />
-                </Col>
-            </Row>
+                        <NavLink exact to="/search">
+                            <Button 
+                                floating 
+                                large 
+                                className='addBook' 
+                                waves='light' 
+                                icon='search' />
+                        </NavLink>
+
+                    </Col>
+                </Row>
+            </PageHandler>
         )
     }
 }

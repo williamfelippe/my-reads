@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'react-materialize'
 import './style.css'
 
@@ -7,7 +8,9 @@ const Header = () => {
         <header className="header">
             <Row className="mb-0">
                 <Col s={3} className="header__title">
-                    <p>My Reads</p>
+                    <NavLink exact to="/" className="header__title__link">
+                        My Reads
+                    </NavLink>
                 </Col>
             </Row>
         </header>

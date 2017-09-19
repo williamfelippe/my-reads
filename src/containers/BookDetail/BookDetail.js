@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { PageHandler } from '../../components'
 import { get, update } from '../../api/BooksAPI'
 
 class BookDetail extends Component {
@@ -6,6 +7,9 @@ class BookDetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading: false,
+            error: false,
+            errorMessage: '',
             book: {}
         }
     }
@@ -28,37 +32,56 @@ class BookDetail extends Component {
      */
     fetchBookById(bookId) {
 
-        /**
-         * 
-         */
-        get(bookId)
-            .then(book => {
-                console.log(book)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        this.setState({ loading: true }, () => {
+
+            /**
+             * 
+             */
+            get(bookId)
+                .then(book => {
+                    this.setState({
+                        book,
+                        loading: false
+                    })
+                })
+                .catch(error => {
+                    console.log(error)
+
+                    this.setState({
+                        loading: false,
+                        error: true
+                    })
+                })
+        })
     }
 
     /**
      * 
      * 
-     * @param {string} shelf 
+     * @param {String} shelf 
      * @memberof BookDetail
      */
     changeBookOfShelf(shelf) {
 
-        /**
-         * 
-         */
-        const { book } = this.state
+        const currentBook = this.state.book
 
         /**
          * 
          */
-        update(book, shelf)
+        update(currentBook, shelf)
             .then(response => {
-                console.log(response)
+
+                /**
+                 * 
+                 */
+                currentBook.shelf = shelf
+
+                /**
+                 * 
+                 */
+                this.setState((prevState, props) => ({
+                    books: [...prevState.books.filter(book => book.id !== currentBook.id), currentBook]
+                }))
             })
             .catch(error => {
                 console.log(error)
@@ -66,8 +89,16 @@ class BookDetail extends Component {
     }
 
     render() {
+        const { loading, error } = this.state
+
         return (
-            <div></div>
+            <PageHandler
+                loading={loading}
+                error={error}>
+                <div>
+                    Livro
+                </div>
+            </PageHandler>
         )
     }
 }

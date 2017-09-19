@@ -11,20 +11,8 @@
     padding: 20px 30px 20px 60px !important;
 }
 
-.bookList {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.bookList__item {
-    justify-content: flex-start;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 200px;
-}
-
 .addBook {
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     right: 30px;
 

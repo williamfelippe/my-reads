@@ -69,8 +69,8 @@ class BooksApp extends Component {
             <Router>
                 <Switch>
                     <DashboardRoute exact path="/" component={Main} />
-                    <DashboardRoute exact path="/:bookId" component={BookDetail} />
-                    <DashboardRoute exact path="buscar" component={Search} />
+                    <DashboardRoute exact path="/search" component={Search} />
+                    <DashboardRoute path="/:bookId" component={BookDetail} />
 
                     <Route component={NoMatch} />
                 </Switch>

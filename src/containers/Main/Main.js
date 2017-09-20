@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Row, Col, Button } from 'react-materialize'
-import { getAll, update } from '../../api/BooksAPI'
 import { BooksList, ShelfSidebar, PageHandler } from '../../components'
 import { READ } from '../../constants/shelfs'
 import shelfToTitle from '../../utils/shelfToTitle'
@@ -12,86 +11,9 @@ class Main extends Component {
     constructor() {
         super()
         this.state = {
-            books: [],
-            shelf: READ,
-            loading: false,
-            error: false,
-            errorMessage: ''
+            shelf: READ
         }
     }
-
-    componentDidMount() {
-        this.fetchBooks()
-    }
-
-    /**
-     * 
-     * 
-     * @memberof Main
-     */
-    fetchBooks() {
-
-        this.setState({ loading: true }, () => {
-
-            /**
-             * 
-             */
-            getAll()
-                .then(books => {
-
-                    /**
-                     * 
-                     */
-                    this.setState({
-                        books,
-                        loading: false
-                    })
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-        })
-    }
-
-
-
-    /**
-     * 
-     * 
-     * @param {string} bookId 
-     * @param {string} shelf 
-     * @memberof Main
-     */
-    changeBookOfShelf(currentBook, shelf) {
-
-        /**
-         * 
-         */
-        update(currentBook, shelf)
-            .then(response => {
-
-                /**
-                 * 
-                 */
-                currentBook.shelf = shelf
-
-                /**
-                 * 
-                 */
-                this.setState((prevState, props) => ({
-                    books: [
-                        ...prevState.books.filter(
-                            book => book.id !== currentBook.id
-                        ),
-                        currentBook
-                    ]
-                }))
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
 
     /**
      * 
@@ -104,12 +26,11 @@ class Main extends Component {
     }
 
     render() {
-        const {
-            books,
-            shelf,
-            loading,
-            error
-        } = this.state
+
+        const { books, changeBookOfShelf } = this.props
+        const { shelf, loading, error } = this.state
+
+        console.log('MAIN')
 
         return (
             <PageHandler
@@ -127,10 +48,8 @@ class Main extends Component {
                         </h1>
 
                         <BooksList
-                            changeBookOfShelf={this.changeBookOfShelf.bind(this)}
-                            books={books.filter(
-                                book => book.shelf === shelf
-                            )} />
+                            changeBookOfShelf={changeBookOfShelf}
+                            books={books.filter(book => book.shelf === shelf)} />
 
                         <NavLink exact to="/search">
                             <Button 

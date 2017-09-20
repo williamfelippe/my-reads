@@ -11,15 +11,15 @@ const Book = (props) => {
     const { book, changeBookOfShelf } = props
     const { imageLinks, title, subtitle } = book
 
-    /**
-     * 
-     */
-    const shelfChooseButton = <Button floating className='book__button' waves='light' icon='arrow_drop_down' />
-
     return (
 
         <div className="book">
-            <Dropdown trigger={shelfChooseButton}>
+            <Dropdown trigger={
+                <Button
+                    floating
+                    className='book__button'
+                    waves='light'
+                    icon='arrow_drop_down' />}>
                 <li>
                     <a onClick={() => changeBookOfShelf(book, READ)}>
                         {shelfToTitle(READ)}
@@ -38,7 +38,7 @@ const Book = (props) => {
             </Dropdown>
 
             <NavLink exact to={`/${book.id}`}>
-                <img src={imageLinks.thumbnail} alt="" className="book__image" />
+                <img src={imageLinks.thumbnail} alt="" className="responsive-img book__image" />
 
                 <p className="book__title">
                     {title}

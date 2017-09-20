@@ -1,17 +1,46 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Input, Icon } from 'react-materialize'
 
-const SearchBar = (props) => {
-    const { onSearch } = props
+class SearchBar extends Component {
 
-    return (
-        <Row>
-            <Input s={6} placeholder="Busque por livros" onChange={onSearch}>
-                <Icon>search</Icon>
-            </Input>
-        </Row>
-    )
+    constructor(props) {
+        super(props)
+        this.state = {
+            searchText: ''
+        }
+    }
+
+    /**
+     * 
+     * 
+     * @param {any} event 
+     * @memberof SearchBar
+     */
+    onChange(event) {
+        const { onSearch } = this.props
+
+        const searchText = event.target.value
+
+        this.setState({ searchText })
+        onSearch(searchText)
+    }
+
+    render() {
+        const { searchText } = this.state
+
+        return (
+            <Row>
+                <Input
+                    s={6}
+                    placeholder="Busque por livros"
+                    value={searchText}
+                    onChange={this.onChange.bind(this)}>
+                    <Icon>search</Icon>
+                </Input>
+            </Row>
+        )
+    }
 }
 
 SearchBar.propTypes = {

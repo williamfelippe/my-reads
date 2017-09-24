@@ -1,6 +1,6 @@
 # MyReads Project
 
-Este projeto é o projeto da parte fundamentos sobre React do curso da Udacity, Nanodegree React. O objetivo era criar uma simples aplicação com uma listagem de livros que podem ser distribuídos em 3 estantes, sendo elas:
+Este é o projeto final da parte fundamentos sobre React do curso Nanodegree React da Udacity. O objetivo era criar uma simples aplicação com uma listagem de livros que podem ser distribuídos em 3 estantes, sendo elas:
 
 * Estou lendo
 * Lido

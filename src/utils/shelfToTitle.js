@@ -1,4 +1,4 @@
-import { READ, WANT_TO_READ, CURRENTLY_READING } from '../constants/shelfs'
+import { READ, WANT_TO_READ, CURRENTLY_READING, NONE } from '../constants/shelfs'
 
 /**
  * Método que recebe uma constante informando uma prateleira
@@ -15,6 +15,9 @@ const shelfToTitle = (shelf) => {
 
         case CURRENTLY_READING:
             return 'Currently reading'
+
+        case NONE:
+            return 'None'
 
         default:
             return ''

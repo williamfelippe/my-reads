@@ -1,0 +1,61 @@
+@import '../../assets/styles/_colors';
+
+.bookdetail {
+    margin-top: 30px;
+
+    .bookdetail__changeofshelfbutton {
+        top: 18px;
+    }
+
+    .bookdetail__cover {
+        background: no-repeat center;
+        background-size: cover;
+
+        width: 90%;
+        height: 300px;
+        
+        margin-top: 40px;
+    }
+
+    .bookdetail__shelf {
+        background-color: $color-primary;
+        border-radius: 20px;
+        
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: capitalize;
+
+        display: block;
+        float: right;
+
+        padding: 15px 20px;
+        margin-bottom: 20px;
+
+        &:after {
+            content: "";
+            clear: both;
+        }
+    }
+
+    .bookdetail__title {
+        margin-bottom: 0;
+    }
+
+    .bookdetail__subtitle {
+        font-family: 'Raleway', sans-serif;
+        margin-bottom: 40px;
+    }
+
+    .bookdetail__rate {
+        color: $color-yellow
+    }
+
+    .bookdetail__identifiers {
+        list-style-type: circle;
+
+        .bookdetail__identifiers__item {
+            border-bottom: $color-white;
+            margin-bottom: 20px;
+        }
+    }
+}

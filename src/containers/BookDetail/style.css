@@ -1,0 +1,35 @@
+.bookdetail {
+  margin-top: 30px; }
+  .bookdetail .bookdetail__changeofshelfbutton {
+    top: 18px; }
+  .bookdetail .bookdetail__cover {
+    background: no-repeat center;
+    background-size: cover;
+    width: 90%;
+    height: 300px;
+    margin-top: 40px; }
+  .bookdetail .bookdetail__shelf {
+    background-color: #ff3b3f;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: capitalize;
+    display: block;
+    float: right;
+    padding: 15px 20px;
+    margin-bottom: 20px; }
+    .bookdetail .bookdetail__shelf:after {
+      content: "";
+      clear: both; }
+  .bookdetail .bookdetail__title {
+    margin-bottom: 0; }
+  .bookdetail .bookdetail__subtitle {
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 40px; }
+  .bookdetail .bookdetail__rate {
+    color: #ffcc5c; }
+  .bookdetail .bookdetail__identifiers {
+    list-style-type: circle; }
+    .bookdetail .bookdetail__identifiers .bookdetail__identifiers__item {
+      border-bottom: #fff;
+      margin-bottom: 20px; }

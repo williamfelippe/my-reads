@@ -1,44 +1,8 @@
-/**
- * Importa as classes essenciais do React
- */
 import React, { Component } from 'react'
-
-/**
- * Importa os componentes do React Router
- */
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch
-} from 'react-router-dom'
-
-/**
- * Importa os componentes que representam as páginas da aplicação
- */
-import {
-    Main,
-    Search,
-    BookDetail,
-    NoMatch
-} from './containers'
-
-/**
- * Importa o componente do topo da aplicação
- */
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Main, Search, BookDetail, NoMatch } from './containers'
 import { Header } from './components'
-
-/**
- * Importa os métodos da 'api' de livros
- */
-import {
-    getAll,
-    update,
-    search
-} from './api/BooksAPI'
-
-/**
- * Importa a biblioteca debounce
- */
+import { getAll, update, search } from './api/BooksAPI'
 import debounce from 'debounce'
 
 /**
@@ -84,7 +48,7 @@ class BooksApp extends Component {
     /**
      * Método que executa a recuperação de todos os livros
      * 
-     * @memberof Main
+     * @memberof BooksApp
      */
     fetchBooks() {
 
@@ -173,24 +137,35 @@ class BooksApp extends Component {
         /**
          * Atualiza no estado os valores da variável do termo a ser buscado
          */
-        this.setState({ searchText }, () => {
-            const { searchText, loading } = this.state
+        const { loading } = this.state
+        
+        if (!loading) {
+            this.setState({ searchText }, () => {
+                const { searchText } = this.state
 
-            /**
-             * Quando o termo digitado ultrapassa 3 caracteres, então a
-             * busca é realizada
-             */
-            if (searchText.length > 3 && !loading) {
-                debounce(this.searchBooks(searchText), 5)
-            }
-        })
+                /**
+                 * Quando o termo digitado ultrapassa 3 caracteres, então a
+                 * busca é realizada
+                 */
+                if (searchText.length > 3) {
+                    debounce(this.searchBooks(searchText), 5)
+                }
+
+                /**
+                 * Do contrário, o 'array' é esvaziado
+                 */
+                else {
+                    this.setState({ booksFound: [] })
+                }
+            })
+        }
     }
 
     /**
      * Método que busca pelos livros que casam com os termos sendo pesquisados
      * 
      * @param {string} termToSearch 
-     * @memberof Search
+     * @memberof BooksApp
      */
     searchBooks(termToSearch) {
 
@@ -200,16 +175,35 @@ class BooksApp extends Component {
              * Realiza requisição que busca pelos livros na base de dados
              */
             search(termToSearch, MAX_RESULTS)
-                .then(booksFound => {
-                    this.setState({
-                        booksFound,
-                        loading: false
-                    })
+                .then(response => {
+
+                    /**
+                     * Verifica se a busca não encontrou nada, lançando uma exceção
+                     * caso seja o caso
+                     */
+                    if (response.hasOwnProperty('error')) {
+                        throw response
+                    }
+                    /**
+                     * Do contrário adiciona os objetos de livros no estado
+                     */
+                    else {
+                        this.setState({
+                            booksFound: response,
+                            loading: false
+                        })
+                    }
                 })
                 .catch(error => {
+
+                    /**
+                     * Adiciona um erro à tela
+                     */
                     this.setState({
+                        booksFound: [],
                         loading: false,
-                        error: true
+                        error: true,
+                        errorMessage: (error.hasOwnProperty('error')) ? error.error : ''
                     })
                 })
 
@@ -223,7 +217,8 @@ class BooksApp extends Component {
             booksFound,
             searchText,
             loading,
-            error
+            error,
+            errorMessage
         } = this.state
 
         return (
@@ -236,18 +231,19 @@ class BooksApp extends Component {
                             <Route exact path="/" render={() => (
                                 <Main
                                     books={books}
-                                    changeBookOfShelf={this.changeBookOfShelf.bind(this)} />
+                                    onChangeBookOfShelf={this.changeBookOfShelf.bind(this)} />
                             )} />
 
                             <Route exact path="/search" render={() => (
                                 <Search
                                     books={books}
                                     booksFound={booksFound}
-                                    changeBookOfShelf={this.changeBookOfShelf.bind(this)}
+                                    onChangeBookOfShelf={this.changeBookOfShelf.bind(this)}
                                     onSearch={this.onSearch.bind(this)}
                                     loading={loading}
                                     searchText={searchText}
-                                    error={error} />
+                                    error={error}
+                                    errorMessage={errorMessage} />
                             )} />
 
                             <Route exact path="/:bookId" render={({ match }) => (
@@ -255,7 +251,8 @@ class BooksApp extends Component {
                                     match={match}
                                     loading={loading}
                                     error={error}
-                                    changeBookOfShelf={this.changeBookOfShelf.bind(this)} />
+                                    errorMessage={errorMessage}
+                                    onChangeBookOfShelf={this.changeBookOfShelf.bind(this)} />
                             )} />
 
                             <Route component={NoMatch} />

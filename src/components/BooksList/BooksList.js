@@ -5,12 +5,12 @@ import './style.css'
 
 const BooksList = (props) => {
 
-    const { books, changeBookOfShelf } = props
+    const { books, onChangeBookOfShelf } = props
 
     const booksList = books.map(book => {
         return (
             <li key={book.id} className="bookList__item">
-                <Book book={book} changeBookOfShelf={changeBookOfShelf} />
+                <Book book={book} onChangeBookOfShelf={onChangeBookOfShelf} />
             </li>
         )
     })
@@ -24,7 +24,7 @@ const BooksList = (props) => {
 
 BooksList.propTypes = {
     books: PropTypes.array.isRequired,
-    changeBookOfShelf: PropTypes.func.isRequired
+    onChangeBookOfShelf: PropTypes.func.isRequired
 }
 
 export default BooksList

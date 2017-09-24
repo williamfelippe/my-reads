@@ -6,7 +6,7 @@ import './style.css'
 
 const Book = (props) => {
 
-    const { book, changeBookOfShelf } = props
+    const { book, onChangeBookOfShelf } = props
     const { imageLinks, title, subtitle } = book
 
     return (
@@ -14,7 +14,7 @@ const Book = (props) => {
         <div className="book">
             <ChangeShelfButton
                 book={book}
-                changeBookOfShelf={changeBookOfShelf} />
+                onChangeBookOfShelf={onChangeBookOfShelf} />
 
             <NavLink exact to={`/${book.id}`}>
                 <img src={imageLinks.thumbnail} alt="" className="responsive-img" />
@@ -33,7 +33,7 @@ const Book = (props) => {
 
 Book.propTypes = {
     book: PropTypes.object.isRequired,
-    changeBookOfShelf: PropTypes.func.isRequired
+    onChangeBookOfShelf: PropTypes.func.isRequired
 }
 
 export default Book 

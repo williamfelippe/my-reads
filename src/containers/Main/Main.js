@@ -31,13 +31,14 @@ class Main extends Component {
 
     render() {
 
-        const { books, changeBookOfShelf } = this.props
+        const { books, onChangeBookOfShelf, errorMessage } = this.props
         const { shelf, loading, error } = this.state
 
         return (
             <PageHandler
                 loading={loading}
-                error={error}>
+                error={error}
+                errorMessage={errorMessage}>
                 <Row>
                     <Col s={2} m={3} className="bookShelf">
                         <ShelfSidebar
@@ -50,7 +51,7 @@ class Main extends Component {
                         </h1>
 
                         <BooksList
-                            changeBookOfShelf={changeBookOfShelf}
+                            onChangeBookOfShelf={onChangeBookOfShelf}
                             books={books.filter(book => book.shelf === shelf)} />
 
                         <NavLink exact to="/search">

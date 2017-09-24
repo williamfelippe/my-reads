@@ -7,16 +7,18 @@ const Search = (props) => {
     const {
         books,
         booksFound,
-        changeBookOfShelf,
+        onChangeBookOfShelf,
         onSearch,
         loading,
-        error
+        error,
+        errorMessage
     } = props
 
     return (
         <PageHandler
             loading={loading}
-            error={error}>
+            error={error}
+            errorMessage={errorMessage}>
             <div className="container">
                 <SearchBar onSearch={onSearch} />
 
@@ -30,7 +32,7 @@ const Search = (props) => {
                                     ) === -1
                                 )
                             }
-                            changeBookOfShelf={changeBookOfShelf} />
+                            onChangeBookOfShelf={onChangeBookOfShelf} />
                     </Col>
                 </Row>
             </div>

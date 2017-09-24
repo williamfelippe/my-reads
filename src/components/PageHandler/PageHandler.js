@@ -29,7 +29,8 @@ PageHandler.defaultProps = {
 PageHandler.propTypes = {
     children: PropTypes.element.isRequired,
     loading: PropTypes.bool,
-    error: PropTypes.bool
+    error: PropTypes.bool,
+    errorMessage: PropTypes.string
 }
 
 export default PageHandler

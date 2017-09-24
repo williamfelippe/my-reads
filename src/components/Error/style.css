@@ -14,7 +14,8 @@
     font-size: 50px; }
   .error .error__message {
     font-size: 30px;
-    font-family: 'Raleway', serif; }
+    font-family: 'Raleway', serif;
+    text-transform: capitalize; }
   .error .error__button {
     background-color: #ff3b3f; }
     .error .error__button:hover {

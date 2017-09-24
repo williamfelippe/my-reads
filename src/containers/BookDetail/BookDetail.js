@@ -58,8 +58,8 @@ class BookDetail extends Component {
     }
 
     render() {
-        const { loading, error, book } = this.state
-        const { changeBookOfShelf } = this.props
+        const { loading, error, errorMessage, book } = this.state
+        const { onChangeBookOfShelf } = this.props
 
         const industryIdentifiers = book.industryIdentifiers && book.industryIdentifiers.length > 0 ?
             book.industryIdentifiers.map(industryIdentifier => {
@@ -74,7 +74,8 @@ class BookDetail extends Component {
         return (
             <PageHandler
                 loading={loading}
-                error={error}>
+                error={error}
+                errorMessage={errorMessage}>
 
                 {
                     !isObjectEmpty(book) ? <div className="container">
@@ -83,7 +84,7 @@ class BookDetail extends Component {
                                 <ChangeShelfButton
                                     book={book}
                                     className="bookdetail__changeofshelfbutton"
-                                    changeBookOfShelf={changeBookOfShelf} />
+                                    onChangeBookOfShelf={onChangeBookOfShelf} />
 
                                 <div className="bookdetail__cover"
                                     style={{ backgroundImage: `url(${book.imageLinks.thumbnail})` }} />

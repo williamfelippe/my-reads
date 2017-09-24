@@ -1,0 +1,11 @@
+.changeofshelf .changeofshelf__button {
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  background-color: #ff3b3f;
+  display: block; }
+  .changeofshelf .changeofshelf__button:hover, .changeofshelf .changeofshelf__button:focus {
+    background-color: #ff3b3f; }
+
+.changeofshelf .changeofshelf__link {
+  color: #6c93f5; }

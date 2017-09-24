@@ -1,0 +1,21 @@
+@import '../../assets/styles/_colors';
+
+.changeofshelf {
+    .changeofshelf__button {
+        position: absolute;
+        top: -20px;
+        right: 20px;
+
+        background-color: $color-primary;
+        display: block;
+
+        &:hover,
+        &:focus {
+            background-color: $color-primary;
+        }
+    }
+
+    .changeofshelf__link {
+        color: $color-blue;
+    }
+}

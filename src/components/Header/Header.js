@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <header className="header">
             <Row className="mb-0">
-                <Col s={3} className="header__title">
+                <Col s={5} m={3} className="header__title">
                     <NavLink exact to="/" className="header__title__link">
                         My Reads
                     </NavLink>

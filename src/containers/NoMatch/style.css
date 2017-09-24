@@ -1,0 +1,19 @@
+.nomatch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0; }
+  .nomatch .nomatch__title {
+    font-size: 200px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #ff3b3f; }
+  .nomatch .nomatch__description {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    color: #fff; }

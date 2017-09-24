@@ -6,8 +6,8 @@ import './style.css'
 class ShelfSidebar extends Component {
 
     /**
-     * 
-     * 
+     * Método responsável por trocar de prateleira de acordo com
+     * o link clicado
      * @param {any} shelf 
      * @memberof ShelfSidebar
      */
@@ -25,7 +25,8 @@ class ShelfSidebar extends Component {
                     <a onClick={this.showBooksFromShelf.bind(this, READ)}
                         className={`shelfSidebar__item__link 
                         ${currentShelf === READ ? 'shelfSidebar__item__link--active' : ''}`}>
-                        Lido
+                        <span className="hide-on-med-and-down">Read</span>
+                        <span className="hide-on-large-only">R</span>
                     </a>
                 </li>
 
@@ -33,7 +34,8 @@ class ShelfSidebar extends Component {
                     <a onClick={this.showBooksFromShelf.bind(this, WANT_TO_READ)}
                         className={`shelfSidebar__item__link
                         ${currentShelf === WANT_TO_READ ? 'shelfSidebar__item__link--active' : ''}`}>
-                        Quero ler
+                        <span className="hide-on-med-and-down">Want to read</span>
+                        <span className="hide-on-large-only">WR</span>
                     </a>
                 </li>
 
@@ -41,7 +43,8 @@ class ShelfSidebar extends Component {
                     <a onClick={this.showBooksFromShelf.bind(this, CURRENTLY_READING)}
                         className={`shelfSidebar__item__link
                         ${currentShelf === CURRENTLY_READING ? 'shelfSidebar__item__link--active' : ''}`}>
-                        Lendo
+                        <span className="hide-on-med-and-down">Currently reading</span>
+                        <span className="hide-on-large-only">CR</span>
                     </a>
                 </li>
             </ul>

@@ -1,25 +1,25 @@
 .bookShelf {
-    background-color: #000;
-    
-    position: fixed;
-
-    height: 100%;
-    padding: 30px 0 0 !important;
-}
+  background-color: #000;
+  position: fixed;
+  top: 60px !important;
+  height: 100%;
+  padding: 30px 0 0 !important; }
 
 .bookContainer {
-    padding: 20px 30px 20px 60px !important;
-}
+  padding: 20px 30px 20px 60px !important; }
+  .bookContainer .bookContainer__credit {
+    font-size: 12px;
+    text-align: center;
+    color: #fff; }
+    .bookContainer .bookContainer__credit a {
+      color: #ff3b3f; }
 
 .addBook {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-
-    background-color: #ff3b3f;
-}
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #ff3b3f; }
 
 .addBook:hover,
 .addBook:focus {
-    background-color: #ff3b3f;
-}
+  background-color: #ff080d; }

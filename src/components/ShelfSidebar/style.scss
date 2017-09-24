@@ -1,0 +1,31 @@
+@import '../../assets/styles/_colors';
+
+.shelfSidebar__item {
+    font-size: 18px;
+    margin-bottom: 20px;
+
+    .shelfSidebar__item__link {
+        cursor: pointer;
+        color: $color-white;
+    
+        font-family: 'Raleway', sans-serif;
+        font-size: 16px;
+        font-weight: 900;
+    
+        display: block;
+    
+        padding: 15px 0 !important;
+        text-align: center;
+
+        @media screen and (min-width: 480px) {
+            padding: 15px 40px !important;
+            text-align: left;
+        }
+
+        &.shelfSidebar__item__link--active,
+        &:hover {
+            background-color: $color-gray;
+            color: $color-primary;
+        }
+    }
+}

@@ -14,7 +14,7 @@ const Error = () => {
 
                 <Col s={12}>
                     <p className="error__message">
-                        Ocorreu um erro inexperado
+                        Unexpected error
                     </p>
                 </Col>
 
@@ -23,7 +23,7 @@ const Error = () => {
                         waves='light' 
                         className="error__button" 
                         onClick={() => window.location.reload()}>
-                        Tentar novamente
+                        Try again
                     </Button>
                 </Col>
             </Row>

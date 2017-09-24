@@ -12,8 +12,10 @@ class SearchBar extends Component {
     }
 
     /**
-     * 
-     * 
+     * Método executado sempre que ocorre uma alteração
+     * no campo de busca.
+     * Quando uma alteração ocorre, este método irá pegar o valor
+     * contido no evento e o colocará no estado do componente
      * @param {any} event 
      * @memberof SearchBar
      */

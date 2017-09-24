@@ -1,0 +1,38 @@
+@import '../../assets/styles/_colors';
+
+.bookShelf {
+    background-color: $color-black;
+    
+    position: fixed;
+    top: 60px !important;
+
+    height: 100%;
+    padding: 30px 0 0 !important;
+}
+
+.bookContainer {
+    padding: 20px 30px 20px 60px !important;
+
+    .bookContainer__credit {
+        font-size: 12px;
+        text-align: center;
+        color: $color-white;
+
+        a {
+            color: $color-primary;
+        }
+    }
+}
+
+.addBook {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    background-color: $color-primary;
+}
+
+.addBook:hover,
+.addBook:focus {
+    background-color: darken($color-primary, 10%);
+}

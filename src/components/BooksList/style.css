@@ -1,11 +1,14 @@
 .bookList {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.bookList__item {
-    justify-content: space-around;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: calc(100%/4);
-}
+  display: flex;
+  flex-wrap: wrap; }
+  .bookList .bookList__item {
+    flex-basis: 100%; }
+    @media screen and (min-width: 480px) and (max-width: 768px) {
+      .bookList .bookList__item {
+        flex-basis: calc(100%/2); } }
+    @media screen and (min-width: 769px) {
+      .bookList .bookList__item {
+        justify-content: space-around;
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: calc(100%/4); } }

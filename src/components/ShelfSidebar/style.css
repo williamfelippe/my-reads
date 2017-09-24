@@ -1,23 +1,19 @@
 .shelfSidebar__item {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.shelfSidebar__item__link {
+  font-size: 18px;
+  margin-bottom: 20px; }
+  .shelfSidebar__item .shelfSidebar__item__link {
     cursor: pointer;
     color: #fff;
-
-    font: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 16px;
     font-weight: 900;
-
     display: block;
-
-    padding: 15px 40px !important;
-}
-
-.shelfSidebar__item__link:hover,
-.shelfSidebar__item__link--active {
-    background-color: #191919;
-    color: #ff3b3f;
-}
+    padding: 15px 0 !important;
+    text-align: center; }
+    @media screen and (min-width: 480px) {
+      .shelfSidebar__item .shelfSidebar__item__link {
+        padding: 15px 40px !important;
+        text-align: left; } }
+    .shelfSidebar__item .shelfSidebar__item__link.shelfSidebar__item__link--active, .shelfSidebar__item .shelfSidebar__item__link:hover {
+      background-color: #191919;
+      color: #ff3b3f; }

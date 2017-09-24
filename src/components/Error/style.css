@@ -1,31 +1,21 @@
 .error {
-    width: 100%;
-    height: 100%;
-    
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.error__container {
-    text-align: center;
-}
-
-.error__icon {
-    font-size: 50px;
-}
-
-.error__message {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .error .error__container {
+    text-align: center; }
+  .error .error__icon {
+    font-size: 50px; }
+  .error .error__message {
     font-size: 30px;
-    font-family: 'Raleway', serif;
-}
-
-.error__button,
-.error__button:hover {
-    background-color: #ff3b3f;
-}
+    font-family: 'Raleway', serif; }
+  .error .error__button {
+    background-color: #ff3b3f; }
+    .error .error__button:hover {
+      background-color: #ff3b3f; }

@@ -30,7 +30,7 @@ class Main extends Component {
     }
 
     render() {
-
+        
         const { books, onChangeBookOfShelf, errorMessage } = this.props
         const { shelf, loading, error } = this.state
 

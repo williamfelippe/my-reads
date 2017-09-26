@@ -4,21 +4,20 @@ import { Loader, Error } from '../'
 
 const PageHandler = (props) => {
 
-    const { loading, error, errorMessage, children } = props
+    const { loading, error, errorMessage, history, children } = props
 
     if (error) {
         return (
-            <Error errorMessage={errorMessage} />
+            <Error errorMessage={errorMessage} history={history} />
         )
     }
-    else {
-        return (
-            <div>
-                {loading && <Loader />}
-                {children}
-            </div>
-        )
-    }
+
+    return (
+        <div>
+            {loading && <Loader />}
+            {children}
+        </div>
+    )
 }
 
 PageHandler.defaultProps = {

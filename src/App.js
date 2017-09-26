@@ -107,7 +107,7 @@ class BooksApp extends Component {
                      * Atualiza o estado do componente com as novas informações.
                      * Colocando o livro na nova prateleira 
                      */
-                    this.setState((prevState, props) => ({
+                    this.setState((prevState) => ({
                         books: [
                             ...prevState.books.filter(
                                 book => book.id !== currentBook.id
